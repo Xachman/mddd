@@ -17,7 +17,7 @@ Code entered here will be executed by a single `PDO::execute()` statement.
 ### Persistent configuration
 Whether you choose to import, save the dump, or just save the configuration, the config is saved every time. 
 It is saved in a json file in the `config` directory. Configurations are saved and loaded based on the hostname you 
-accessed the data manager from. The intended way to use this is to add `:9000` to the URL you use to access 
+accessed the data manager from. The intended way to use this is to add `:{port number}` to the URL you use to access 
 your dev site in order to open the data manager with your site's configuration preloaded.
 ### Save it for later
 There is an option to save the dump file without importing it. Files are saved in the `dump` directory. 
