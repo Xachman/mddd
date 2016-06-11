@@ -56,6 +56,7 @@ final class DataManager {
             if (isset($_POST['action'])) {
                 switch ($_POST['action']) {
                     case 'perform_dump':
+                    case 'perform_dump_nodata':
                         $_POST['config']['misc']['last_action'] = 'perform_dump';
                         $this->view = 'loading';
                         $this->site = $_POST['site'];
@@ -65,6 +66,7 @@ final class DataManager {
                         $this->responseMessage = "We're doing it now, sit tight&hellip;";
                         break;
                     case 'save_dump':
+                        die('Invalid action');
                         $_POST['config']['misc']['last_action'] = 'save_dump';
                         $this->view = 'result';
                         $this->site = $_POST['site'];
@@ -114,6 +116,7 @@ final class DataManager {
     }
     
     private function getSqlDump() {
+        $this->loadConfig();
         $remote_host = $this->getConfig('remote', 'db_host');
 	$remote_dbname = $this->getConfig('remote', 'db_name');
 	$remote_dbuser = $this->getConfig('remote', 'db_uname');
@@ -124,6 +127,9 @@ final class DataManager {
             'add-drop-database' => true,
             'exclude-tables' => array_filter(preg_split('/\s+/',$this->getConfig('misc', 'exclude_tables'))),
         );
+        if ($this->getConfig('misc', 'last_action') === 'perform_dump_nodata') {
+            $dumpSettings['no-data'] = true;
+        }
 	
 	//https://github.com/ifsnop/mysqldump-php
 	$dump = new Ifsnop\Mysqldump\Mysqldump("mysql:host=$remote_host;dbname=$remote_dbname", $remote_dbuser, $remote_pass, $dumpSettings);

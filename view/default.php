@@ -43,6 +43,14 @@
             <small>Additional SQL commands to run after the database is imported</small>
         </div>
         <div class="frm-field">
+            <label><input type="checkbox" name="config[misc][apply_magento_sql]" value="1"<?php echo ($dm->getConfig($env, 'db_pass') == 1) ? ' checked="checked"' : ''; ?> /> Magento 1.x</label>
+            <div class="showifmagento">
+                <small>Prepackaged additional SQL to fix Magento DB dumps</small>
+                <label>Dev site URL</label>
+                <input type="text" name="config[misc][magento_siteurl]" value="<?= $dm->getConfig('misc', 'magento_siteurl'); ?>" />
+            </div>
+        </div>
+        <div class="frm-field">
             <?php
             $checked = ($dm->getConfig('misc', 'delete_after_import') === 'y');
             ?>
@@ -51,7 +59,8 @@
         <div class="frm-field">
             <?php $lastAction = $dm->getConfig('misc', 'last_action'); ?>
             <input type="radio" name="action" value="perform_dump"<?php if ($lastAction == 'perform_dump') echo ' checked="checked"'; ?> /><label>Dump and import</label><br />
-            <input type="radio" name="action" value="save_dump"<?php if ($lastAction == 'save_dump') echo ' checked="checked"'; ?> /><label>Save dump only</label><br />
+            <input type="radio" name="action" value="perform_dump_nodata"<?php if ($lastAction == 'perform_dump') echo ' checked="checked"'; ?> /><label>Import schema only (no data)</label><br />
+            <?php /*<input type="radio" name="action" value="save_dump"<?php if ($lastAction == 'save_dump') echo ' checked="checked"'; ?> /><label>Save dump only</label><br />*/?>
             <input type="radio" name="action" value="save_config"<?php if ($lastAction == 'save_config') echo ' checked="checked"'; ?> /><label>Save config only</label><br />
         </div>
     </div>
