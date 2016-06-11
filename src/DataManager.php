@@ -171,7 +171,7 @@ final class DataManager {
 	if (!is_dir($this->configDir)) {
 	    mkdir($this->configDir, 0775);
 	}
-	file_put_contents("{$this->configDir}/{$this->site}.json", json_encode($data));
+	file_put_contents("{$this->configDir}/{$this->site}.json", json_encode($data, JSON_PRETTY_PRINT));
     }
     
     private function loadConfig() {
