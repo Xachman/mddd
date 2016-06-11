@@ -43,9 +43,9 @@
             <small>Additional SQL commands to run after the database is imported</small>
         </div>
         <div class="frm-field">
-            <label><input type="checkbox" name="config[misc][apply_magento_sql]" value="1"<?php echo ($dm->getConfig($env, 'db_pass') == 1) ? ' checked="checked"' : ''; ?> /> Magento 1.x</label>
-            <div class="showifmagento">
-                <small>The tool will run additional SQL to fix Magento DB dumps</small>
+            <label><input id="applyMagento" type="checkbox" name="config[misc][apply_magento_sql]" value="1"<?php echo ($dm->getConfig('misc', 'apply_magento_sql') == 1) ? ' checked="checked"' : ''; ?> /> Magento 1.x</label>
+            <div id="showifmagento" <?php if ($dm->getConfig('misc','apply_magento_sql') != 1) { echo 'style="display:none;"'; } ?>>
+                <small>The tool will run additional SQL to fix Magento DB dumps</small><br />
                 <label>Dev site URL</label>
                 <input type="text" name="config[misc][magento_siteurl]" value="<?= $dm->getConfig('misc', 'magento_siteurl'); ?>" />
                 <small>Needs to include a trailing / </small>
@@ -70,3 +70,14 @@
         <button type="submit">Go</button>
     </div>
 </form>
+<script>
+    
+    document.getElementById('applyMagento').addEventListener('click', function(){
+        console.log(document.getElementById('applyMagento').checked);
+        if (document.getElementById('applyMagento').checked === true) {
+            document.getElementById('showifmagento').style.display = 'block';
+        } else {
+            document.getElementById('showifmagento').style.display = 'none';
+        }
+    });
+</script>
