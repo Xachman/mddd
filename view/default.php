@@ -45,9 +45,10 @@
         <div class="frm-field">
             <label><input type="checkbox" name="config[misc][apply_magento_sql]" value="1"<?php echo ($dm->getConfig($env, 'db_pass') == 1) ? ' checked="checked"' : ''; ?> /> Magento 1.x</label>
             <div class="showifmagento">
-                <small>Prepackaged additional SQL to fix Magento DB dumps</small>
+                <small>The tool will run additional SQL to fix Magento DB dumps</small>
                 <label>Dev site URL</label>
                 <input type="text" name="config[misc][magento_siteurl]" value="<?= $dm->getConfig('misc', 'magento_siteurl'); ?>" />
+                <small>Needs to include a trailing / </small>
             </div>
         </div>
         <div class="frm-field">
