@@ -1,0 +1,133 @@
+//@base: #6D8C8E;
+//@base: #038fd8;
+@base: #5D96AB; // This variable controls the whole color scheme, change it + recompile for funsies
+
+@background: darken(@base, 35%);
+@input-bg: lighten(@base, 25%);
+
+@text-dark: darken(@base, 30%);
+@text-light: lighten(@base, 25%);
+
+@base-comp: spin(@base, 180);
+@button-bg: saturate(@base-comp, 30%);
+@button-text: lighten(saturate(@base-comp, 10%), 40%);
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    color: @text-light;
+    background: @background;
+    font-family: monospace;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+    border-bottom: 2px solid @text-light;
+}
+
+input[type="text"], input[type="password"], input[type="select"], textarea {
+    background-color: @input-bg;
+    border: none;
+    outline: none;
+    box-shadow: 2px 3px rgba(0,0,0,0.2);
+    padding: .3em;
+    color: @text-dark;
+}
+
+main {
+    width: 100%;
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.dm-response {
+    font-size: 1.5rem;
+    padding: 0.5em;
+    text-align: center;
+    color: @button-bg;
+    border: 2px solid @button-bg;
+}
+
+form {
+    margin: 0 -15px;
+    
+    label, input, textarea {
+        font-size: 1.4rem;
+    }
+    
+    .frm-field {
+        margin-bottom: 15px;
+    }
+    
+    textarea {
+        min-height: 6em;
+    }
+    
+    h2, label {
+        text-transform: uppercase;
+    }
+    
+    label {
+        font-weight: bold;
+        color: @base;
+    }
+    [type="checkbox"] + label, [type="radio"] + label {
+        color: @text-light;
+    }
+    
+    button {
+        font-family: monospace;
+        border: none;
+        outline: none;
+        background: @button-bg;
+        color: @button-text;
+        width: 100%;
+        font-size: 2.6rem;
+        padding: .2em;
+        cursor: pointer;
+        box-shadow: 2px 3px rgba(0,0,0,0.2);
+        &:hover {
+            background-color: lighten(@button-bg, 5%);
+        }
+        margin-bottom: 30px;
+    }
+}
+
+.env {
+    padding: 15px;
+    @media(min-width: 55em) {
+        float: left;
+        width: 50%;
+        &.env-local {
+            h2 + .frm-field {
+                margin-top: 7.1em;
+            }
+        }
+    }
+    input {
+        width: 100%;
+    }  
+}
+
+.misc {
+    clear: both;
+    width: 100%;
+    padding: 15px;
+    input[type="text"], textarea {
+        width: 100%;
+    }
+    textarea {
+        width: 100%;
+        min-height: 7em;
+    }
+}
+
+.loading-img {
+    display: block;
+    margin: 15px auto;
+}
