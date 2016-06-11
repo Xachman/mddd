@@ -19,9 +19,7 @@ Whether you choose to import, save the dump, or just save the configuration, the
 It is saved in a json file in the `config` directory. Configurations are saved and loaded based on the hostname you 
 accessed the data manager from. The intended way to use this is to add `:{port number}` to the URL you use to access 
 your dev site in order to open the data manager with your site's configuration preloaded.
-### Save it for later
-There is an option to save the dump file without importing it. Files are saved in the `dump` directory. 
-At the moment there is no way within the application to import a saved dump, and running it again will overwrite the existing dump file.
+
 
 ## Disclaimer
 I built this to be fast and easy to use. Don't ever put this on a public server!
