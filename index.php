@@ -7,6 +7,7 @@
  * when it runs it will create a mysql dump of live site data and save it to a tmp file locally
  * then exec to selected db
  */
+ini_set('max_execution_time',0);
 require 'src/DataManager.php';
 
 $dm = new DataManager();
