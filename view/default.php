@@ -73,7 +73,6 @@
 <script>
     
     document.getElementById('applyMagento').addEventListener('click', function(){
-        console.log(document.getElementById('applyMagento').checked);
         if (document.getElementById('applyMagento').checked === true) {
             document.getElementById('showifmagento').style.display = 'block';
         } else {
