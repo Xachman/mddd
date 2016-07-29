@@ -57,7 +57,7 @@ final class DataManager {
                 switch ($_POST['action']) {
                     case 'perform_dump':
                     case 'perform_dump_nodata':
-                        $_POST['config']['misc']['last_action'] = 'perform_dump';
+                        $_POST['config']['misc']['last_action'] = $_POST['action'];
                         $this->view = 'loading';
                         $this->site = $_POST['site'];
                         $this->saveConfig($_POST['config']);
@@ -154,12 +154,13 @@ final class DataManager {
 	}
         if ($this->getConfig('misc', 'apply_magento_sql') == 1) {
             $siteurl = $this->getConfig('misc','magento_siteurl');
-            $sql = "UPDATE d3_core_config_data SET value = '$siteurl' WHERE path IN ('web/unsecure/base_url','web/secure/base_url');
+            $tableprefix = $this->getConfig('misc','magento_tableprefix');
+            $sql = "UPDATE {$tableprefix}core_config_data SET value = '$siteurl' WHERE path IN ('web/unsecure/base_url','web/secure/base_url');
             SET FOREIGN_KEY_CHECKS=0;
-            UPDATE d3_core_store SET store_id = 0 WHERE code='admin';
-            UPDATE d3_core_store_group SET group_id = 0 WHERE name='Default';
-            UPDATE d3_core_website SET website_id = 0 WHERE code='admin';
-            UPDATE d3_customer_group SET customer_group_id = 0 WHERE customer_group_code='NOT LOGGED IN';
+            UPDATE {$tableprefix}core_store SET store_id = 0 WHERE code='admin';
+            UPDATE {$tableprefix}core_store_group SET group_id = 0 WHERE name='Default';
+            UPDATE {$tableprefix}core_website SET website_id = 0 WHERE code='admin';
+            UPDATE {$tableprefix}customer_group SET customer_group_id = 0 WHERE customer_group_code='NOT LOGGED IN';
             SET FOREIGN_KEY_CHECKS=1;";
             // there is no point in guarding against sql injection here
             // since the whole point is that you can run any sql commands you want on local db

@@ -49,6 +49,9 @@
                 <label>Dev site URL</label>
                 <input type="text" name="config[misc][magento_siteurl]" value="<?= $dm->getConfig('misc', 'magento_siteurl'); ?>" />
                 <small>Needs to include a trailing / </small>
+                <br />
+                <label>Table Prefix</label>
+                <input type="text" name="config[misc][magento_tableprefix]" value="<?= $dm->getConfig('misc', 'magento_tableprefix'); ?>" />
             </div>
         </div>
         <div class="frm-field">
@@ -60,7 +63,7 @@
         <div class="frm-field">
             <?php $lastAction = $dm->getConfig('misc', 'last_action'); ?>
             <input type="radio" name="action" value="perform_dump"<?php if ($lastAction == 'perform_dump') echo ' checked="checked"'; ?> /><label>Dump and import</label><br />
-            <input type="radio" name="action" value="perform_dump_nodata"<?php if ($lastAction == 'perform_dump') echo ' checked="checked"'; ?> /><label>Import schema only (no data)</label><br />
+            <input type="radio" name="action" value="perform_dump_nodata"<?php if ($lastAction == 'perform_dump_nodata') echo ' checked="checked"'; ?> /><label>Import schema only (no data)</label><br />
             <?php /*<input type="radio" name="action" value="save_dump"<?php if ($lastAction == 'save_dump') echo ' checked="checked"'; ?> /><label>Save dump only</label><br />*/?>
             <input type="radio" name="action" value="save_config"<?php if ($lastAction == 'save_config') echo ' checked="checked"'; ?> /><label>Save config only</label><br />
         </div>
