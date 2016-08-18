@@ -4,4 +4,4 @@
         <p><?= $dm->getResponseMessage(); ?></p>
     </div>
 <?php endif; ?>
-<img class="loading-img" src="/assets/img/gromit.gif" />
+<img class="loading-img" src="assets/img/gromit.gif" />
